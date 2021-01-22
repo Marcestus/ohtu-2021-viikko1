@@ -29,8 +29,6 @@ public class VarastoTest {
         puoliTaysiVirheellinenVarasto = new Varasto(0, 10);
         negatiivinenSaldoVarasto = new Varasto(10, -10);
     }
-
-    
     
     @Test
     public void konstruktoriLuoTyhjanVaraston() {
@@ -76,8 +74,6 @@ public class VarastoTest {
         // varastossa pitäisi olla tilaa 10 - 8 + 2 eli 4
         assertEquals(4, varasto.paljonkoMahtuu(), vertailuTarkkuus);
     }
-    
-    //lisätyt testit
     
     @Test
     public void konstruktoriLuoVirheellisenVaraston() {
