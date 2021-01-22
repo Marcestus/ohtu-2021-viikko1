@@ -125,7 +125,7 @@ public class VarastoTest {
     
     @Test
     public void toStringTulostaaOikein() {
-        assertEquals("saldo = 5, vielä tilaa 5", puoliTaysiVarasto.toString());
+        assertEquals("saldo = 5.0, vielä tilaa 5.0", puoliTaysiVarasto.toString());
     }
 
 }
