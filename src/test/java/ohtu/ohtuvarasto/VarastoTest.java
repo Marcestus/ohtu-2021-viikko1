@@ -13,13 +13,25 @@ import static org.junit.Assert.*;
 public class VarastoTest {
 
     Varasto varasto;
+    Varasto virheellinenVarasto;
+    Varasto puoliTaysiVarasto;
+    Varasto liianTaysiVarasto;
+    Varasto puoliTaysiVirheellinenVarasto;
+    Varasto negatiivinenSaldoVarasto;
     double vertailuTarkkuus = 0.0001;
 
     @Before
     public void setUp() {
         varasto = new Varasto(10);
+        virheellinenVarasto = new Varasto(-10);
+        puoliTaysiVarasto = new Varasto(10, 5);
+        liianTaysiVarasto = new Varasto(10,15);
+        puoliTaysiVirheellinenVarasto = new Varasto(0, 10);
+        negatiivinenSaldoVarasto = new Varasto(10, -10);
     }
 
+    
+    
     @Test
     public void konstruktoriLuoTyhjanVaraston() {
         assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
@@ -63,6 +75,61 @@ public class VarastoTest {
 
         // varastossa pitäisi olla tilaa 10 - 8 + 2 eli 4
         assertEquals(4, varasto.paljonkoMahtuu(), vertailuTarkkuus);
+    }
+    
+    //lisätyt testit
+    
+    @Test
+    public void konstruktoriLuoVirheellisenVaraston() {
+        assertEquals(0, virheellinenVarasto.getTilavuus(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void konstruktoriLuoPuoliTaydenVaraston() {
+        assertEquals(5, puoliTaysiVarasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void konstruktoriLuoLiianTaydenVaraston() {
+        assertEquals(10, liianTaysiVarasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void konstruktoriLuoPuoliTaydenVirheellisenVaraston() {
+        assertEquals(0, puoliTaysiVirheellinenVarasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void konstruktoriLuoNegatiivisenSaldonVaraston() {
+        assertEquals(0, negatiivinenSaldoVarasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void listataanNegatiivinenMaara() {
+        puoliTaysiVarasto.lisaaVarastoon(-10);
+        assertEquals(5, puoliTaysiVarasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void lisataanLiianPaljon() {
+        puoliTaysiVarasto.lisaaVarastoon(15);
+        assertEquals(10, puoliTaysiVarasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void otetaanNegatiivinenMaara() {
+        puoliTaysiVarasto.otaVarastosta(-10);
+        assertEquals(5, puoliTaysiVarasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void otetaanLiianPaljon() {
+        assertEquals(5, puoliTaysiVarasto.otaVarastosta(10), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void toStringTulostaaOikein() {
+        assertEquals("saldo = 5.0, vielä tilaa 5.0", puoliTaysiVarasto.toString());
     }
 
 }
