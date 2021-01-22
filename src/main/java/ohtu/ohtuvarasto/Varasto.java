@@ -80,4 +80,6 @@ public class Varasto {
     public String toString() {
         return ("saldo = " + saldo + ", vielä tilaa " + paljonkoMahtuu());
     }
+    
+    //lisätään tänne jotain että voidaan pushata uudestaan
 }
