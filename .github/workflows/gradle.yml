@@ -27,3 +27,5 @@ jobs:
       run: bash <(curl -s https://codecov.io/bash)
     - name: checkstyle
       run: ./gradlew checkstyleMain
+    - name: run env
+      run: env
